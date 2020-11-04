@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Meeseeks.Console": {
+      "commandName": "Project",
+      "commandLineArgs": "--help"
+    }
+  }
+}
