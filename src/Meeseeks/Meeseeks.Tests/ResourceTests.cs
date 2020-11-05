@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Meeseeks.Tests
 {
-    public class UnitTest1
+    public class ResourceTests
     {
         [Fact]
         public void Test1()
