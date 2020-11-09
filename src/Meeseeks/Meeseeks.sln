@@ -5,17 +5,25 @@ VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Console", "Console", "{6D5BA6F1-FEA0-443C-8B97-1378341EA651}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meeseeks.Console", "Meeseeks.Console\Meeseeks.Console.csproj", "{8D0FB5FB-F091-4737-A35B-5A604531A101}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meeseeks.Console", "Meeseeks.Console\Meeseeks.Console.csproj", "{8D0FB5FB-F091-4737-A35B-5A604531A101}"
+	ProjectSection(ProjectDependencies) = postProject
+		{25698196-66BD-48EE-A68E-FEF73492B3F2} = {25698196-66BD-48EE-A68E-FEF73492B3F2}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{29A3BB08-BBE3-46CF-B998-C85AD45C324D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meeseeks.Tests", "Meeseeks.Tests\Meeseeks.Tests.csproj", "{BBC118D5-27B6-41C0-9008-D90E1DD04A5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meeseeks.Tests", "Meeseeks.Tests\Meeseeks.Tests.csproj", "{BBC118D5-27B6-41C0-9008-D90E1DD04A5B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{39481D4C-8CAB-4818-AA68-D7EB1CF8CD5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meeseeks.Library", "Meeseeks.Library\Meeseeks.Library.csproj", "{25698196-66BD-48EE-A68E-FEF73492B3F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meeseeks.Library", "Meeseeks.Library\Meeseeks.Library.csproj", "{25698196-66BD-48EE-A68E-FEF73492B3F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meeseeks.Tests.Console", "Meeseeks.Tests.Console\Meeseeks.Tests.Console.csproj", "{71A7EAAF-922E-4A3C-8D64-C3AB244C2F97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meeseeks.Tests.Console", "Meeseeks.Tests.Console\Meeseeks.Tests.Console.csproj", "{71A7EAAF-922E-4A3C-8D64-C3AB244C2F97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meeseeks.Library.Tests", "Meeseeks.Library.Tests\Meeseeks.Library.Tests.csproj", "{7AC6E9CD-00EF-4B36-AB9B-B755B57959B2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{25698196-66BD-48EE-A68E-FEF73492B3F2} = {25698196-66BD-48EE-A68E-FEF73492B3F2}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +47,10 @@ Global
 		{71A7EAAF-922E-4A3C-8D64-C3AB244C2F97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71A7EAAF-922E-4A3C-8D64-C3AB244C2F97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71A7EAAF-922E-4A3C-8D64-C3AB244C2F97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AC6E9CD-00EF-4B36-AB9B-B755B57959B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AC6E9CD-00EF-4B36-AB9B-B755B57959B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AC6E9CD-00EF-4B36-AB9B-B755B57959B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AC6E9CD-00EF-4B36-AB9B-B755B57959B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +60,7 @@ Global
 		{BBC118D5-27B6-41C0-9008-D90E1DD04A5B} = {29A3BB08-BBE3-46CF-B998-C85AD45C324D}
 		{25698196-66BD-48EE-A68E-FEF73492B3F2} = {39481D4C-8CAB-4818-AA68-D7EB1CF8CD5C}
 		{71A7EAAF-922E-4A3C-8D64-C3AB244C2F97} = {29A3BB08-BBE3-46CF-B998-C85AD45C324D}
+		{7AC6E9CD-00EF-4B36-AB9B-B755B57959B2} = {29A3BB08-BBE3-46CF-B998-C85AD45C324D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7855CBD8-33C1-41F0-9121-2A8083B4D3DD}
