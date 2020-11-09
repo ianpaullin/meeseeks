@@ -17,7 +17,8 @@ namespace Meeseeks.Library
 {
     public class Configuration : IConfig
     {
-        private string _configData;
+        private ConfigurationFile _configData;
+        private bool _isLoaded;
 
         public Configuration()
         {
@@ -31,17 +32,38 @@ namespace Meeseeks.Library
         public bool LoadConfigFile(string configFile)
         {
             // check for file and try loading
-            var exists = (File.Exists(configFile))
-                ? true
+            var configFileToLoad = (!string.IsNullOrEmpty(configFile)) 
+                ? configFile 
+                : _defaultConfigFile();
+
+            _loadConfigFile(configFileToLoad);
+
+            return (_isLoaded && _configData != null) 
+                ? true 
                 : false;
+        }
 
-            if (!exists) {
-                return false;
-            }
+        private void _loadConfigFile(string configFile) 
+        {
+            //using (FileStream fs = File.OpenRead(configFile))
+            //{
 
-            // load file here 
+                // read file
+                //var configFileData = JsonSerializer.Deserialize<ConfigurationFile>(fs);
 
-            return true;
+                var jsonString = File.ReadAllText(configFile);
+                var _configData = JsonSerializer.Deserialize<ConfigurationFile>(jsonString);
+            //}
+
+
+
+            // validate
+            _isLoaded = true;
+        }
+
+        private string _defaultConfigFile()
+        {
+            return string.Empty;
         }
 
     }

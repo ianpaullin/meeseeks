@@ -15,17 +15,13 @@ namespace Meeseeks.Library.Tests
         {
             // arrange
             var config = new Library.Configuration();
+            var configFilePath = LoadTestConfigFile();
 
             // act
-            
-            // get test file (solely for these tests)
-            var configFilePath = LoadTestConfigFile();
             var loadResult = config.LoadConfigFile(configFilePath);
 
             // assert
             Assert.True(loadResult);
-
-
         }
 
         private string CreateTestConfigFile()
@@ -36,7 +32,7 @@ namespace Meeseeks.Library.Tests
         private string LoadTestConfigFile()
         {
             // look for "TestFiles" directory and then look for "configTestFile.json"
-            var currentDirectory = Environment.CurrentDirectory + @"\TestFiles";
+            var currentDirectory = Environment.CurrentDirectory;
 
             if (System.IO.Directory.Exists(currentDirectory))
             {
@@ -53,7 +49,7 @@ namespace Meeseeks.Library.Tests
                 // no directory found!
             }
 
-            return string.Empty;
+            return true;
             
         }
 

@@ -7,7 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="configTestFile.json" />
     <None Remove="TestFiles\configTestFile.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="config\configTestFile.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
