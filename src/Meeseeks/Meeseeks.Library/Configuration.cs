@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.FileExtensions;
@@ -10,6 +9,7 @@ using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.Configuration.Binder;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -23,6 +23,12 @@ namespace Meeseeks.Library
 
         public Configuration()
         {
+            // considering using ConfigurationBuilder
+            //IConfiguration Configuration = new ConfigurationBuilder()
+            //  .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            //  .AddEnvironmentVariables()
+            //  .AddCommandLine(args)
+            //  .Build();
             _configFilePath = _defaultConfigFile();
         }
 
@@ -93,6 +99,5 @@ namespace Meeseeks.Library
     {
         bool LoadConfigFile();
         string GetConfigValue(string keyName);
-
     }
 }
