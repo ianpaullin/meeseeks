@@ -8,9 +8,53 @@ using Newtonsoft.Json.Converters;
 
 namespace Meeseeks.Library
 {
+//    {
+//  "Version": "0.0.1",
+//  "Date": "2020-11-08T00:00:00-00:00",
+//  "ConfigurationFiles": [
+//    "configTestFile_Module_1.json",
+//    "configTestFile_Module_2.json"
+//  ],
+//  "ProcessFlow": {
+//    "Name": "Test Process Flow",
+//    "Summary": "This is just a test.",
+//    "Step-1": {
+//      "Name": "Create blank VS solution.",
+//      "Detail": "Create a blank VS 2019 solution.",
+//      "Input": {
+//        "Required": {
+//          "SolutionPath": "C:\\solution",
+//          "SolutionFileName": "BlankSolution.sln"
+//        },
+//        "Optional": {
+//    "SolutionVersionMin": "9",
+//          "SolutionVersionMax":"10"
+//        }
+//      },
+//      "Dependencies": "none"
+//    },
+//    "Step-2": {
+//    "Name": "Create dotnet console",
+//      "Detail": "Create a new console app in a 2019 solution.",
+//      "Dependencies": "none"
+//    }
+//  }
+//}
+
+
     class ConfigurationFile
     {
+        [JsonProperty("Version")]
+        public string Version { get; set; }
 
+        [JsonProperty("Date")]
+        public DateTimeOffset Date { get; set; }
+
+        [JsonProperty("ConfigurationFiles")]
+        public string[] ConfigurationFiles { get; set; }
+
+        [JsonProperty("ProcessFlow")]
+        public ProcessFlow[] ProcessFlow { get; set; }
     }
 
     public partial class MeeseeksConfiguration
