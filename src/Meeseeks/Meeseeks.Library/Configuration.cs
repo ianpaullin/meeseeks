@@ -17,9 +17,11 @@ namespace Meeseeks.Library
 {
     public class Configuration : IConfig
     {
-        public string ConfigurationFilePath { get; set; }
         private ConfigurationFile _configData;
-        public bool IsLoaded { get; set; }
+        public string ConfigurationFilePath { get; set; }
+        public bool IsLoaded {
+            get { return (_configData != null && File.Exists(ConfigurationFilePath)); }
+        }
 
         public Configuration()
         {
@@ -30,6 +32,7 @@ namespace Meeseeks.Library
             if (LoadDefaultConfigFile)
             {
                 ConfigurationFilePath = _defaultConfigFile();
+                LoadConfigFile();
             }
         }
 
@@ -43,7 +46,7 @@ namespace Meeseeks.Library
             return string.Empty;
         }
 
-        public bool LoadConfigFile() 
+        public void LoadConfigFile() 
         {
             var configFileToUse = string.Empty;
 
@@ -54,13 +57,8 @@ namespace Meeseeks.Library
                 configFileToUse = _defaultConfigFile();
             }
 
-            // create 
-            _loadConfigFile(configFileToUse);
-
-            // validate 
-            return (IsLoaded == true && _configData != null) 
-                ? true 
-                : false;
+            var jsonString = File.ReadAllText(ConfigurationFilePath);
+            this._configData = JsonSerializer.Deserialize<ConfigurationFile>(jsonString);
         }
 
         private bool _configFileExists(string configFile)
@@ -70,17 +68,6 @@ namespace Meeseeks.Library
                 : _defaultConfigFile();
 
             return (File.Exists(configFileToLoad)) 
-                ? true 
-                : false;
-        }
-
-        private void _loadConfigFile(string configFile) 
-        {
-            var jsonString = File.ReadAllText(configFile);
-            this._configData = JsonSerializer.Deserialize<ConfigurationFile>(jsonString);
-
-            // validate
-            IsLoaded = (_configData != null) 
                 ? true 
                 : false;
         }
@@ -101,7 +88,7 @@ namespace Meeseeks.Library
 
     public interface IConfig
     {
-        bool LoadConfigFile();
+        void LoadConfigFile();
         string GetConfigValue(string keyName);
     }
 }
