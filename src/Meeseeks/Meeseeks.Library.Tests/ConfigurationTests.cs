@@ -29,7 +29,7 @@ namespace Meeseeks.Library.Tests
             var loadResult = configurationObj.IsLoaded;
 
             // assert
-            Assert.False(loadResult);
+            Assert.True(loadResult);
         }
 
 
