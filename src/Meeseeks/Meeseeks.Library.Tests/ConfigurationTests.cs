@@ -11,13 +11,27 @@ namespace Meeseeks.Library.Tests
     public class ConfigurationTests
     {
         [Fact]
-        public void LoadConfigFile_Test() 
+        public void IsLoaded_Test_NoAutoLoad() 
         {
             // arrange & act
-            var loadResult = new Library.Configuration().LoadConfigFile();
+            var configurationObj = new Library.Configuration();
+            var loadResult = configurationObj.IsLoaded;
 
             // assert
-            Assert.True(loadResult);
+            Assert.False(loadResult);
         }
+
+        [Fact]
+        public void IsLoaded_Test_AutoLoad()
+        {
+            // arrange & act
+            var configurationObj = new Library.Configuration(true);
+            var loadResult = configurationObj.IsLoaded;
+
+            // assert
+            Assert.False(loadResult);
+        }
+
+
     }
 }
