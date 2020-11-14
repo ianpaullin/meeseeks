@@ -17,24 +17,25 @@ namespace Meeseeks.Library
 {
     public class Configuration : IConfig
     {
-        private string _configFilePath = string.Empty;
+        public string ConfigurationFilePath { get; set; }
         private ConfigurationFile _configData;
-        private bool _isLoaded;
+        public bool IsLoaded { get; set; }
 
         public Configuration()
         {
-            // considering using ConfigurationBuilder
-            //IConfiguration Configuration = new ConfigurationBuilder()
-            //  .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-            //  .AddEnvironmentVariables()
-            //  .AddCommandLine(args)
-            //  .Build();
-            _configFilePath = _defaultConfigFile();
+        }
+
+        public Configuration(bool LoadDefaultConfigFile)
+        {
+            if (LoadDefaultConfigFile)
+            {
+                ConfigurationFilePath = _defaultConfigFile();
+            }
         }
 
         public Configuration(string configFile)
         {
-            _configFilePath = configFile;
+            ConfigurationFilePath = configFile;
         }
 
         public string GetConfigValue(string keyName)
@@ -46,8 +47,8 @@ namespace Meeseeks.Library
         {
             var configFileToUse = string.Empty;
 
-            if (_configFileExists(_configFilePath)) {
-                configFileToUse = _configFilePath;
+            if (_configFileExists(ConfigurationFilePath)) {
+                configFileToUse = ConfigurationFilePath;
             }
             else {
                 configFileToUse = _defaultConfigFile();
@@ -57,7 +58,7 @@ namespace Meeseeks.Library
             _loadConfigFile(configFileToUse);
 
             // validate 
-            return (_isLoaded == true && _configData != null) 
+            return (IsLoaded == true && _configData != null) 
                 ? true 
                 : false;
         }
@@ -79,7 +80,7 @@ namespace Meeseeks.Library
             this._configData = JsonSerializer.Deserialize<ConfigurationFile>(jsonString);
 
             // validate
-            _isLoaded = (_configData != null) 
+            IsLoaded = (_configData != null) 
                 ? true 
                 : false;
         }
@@ -89,10 +90,13 @@ namespace Meeseeks.Library
             var defaultDirectory = Environment.CurrentDirectory.Substring(0, Environment.CurrentDirectory.LastIndexOf("Meeseeks.Library.Tests") + "Meeseeks.Library.Tests".Length);
             var defaultConfigFileDirectory = "config";
             var defaultConfigFileName = "configTestFile.json";
+            var defaultConfigFileToTest = Path.Combine(defaultDirectory, defaultConfigFileDirectory, defaultConfigFileName);
 
-            return Path.Combine(defaultDirectory, defaultConfigFileDirectory, defaultConfigFileName);
+            return (File.Exists(defaultConfigFileToTest)) 
+                ? defaultConfigFileToTest
+                : string.Empty;
+            
         }
-
     }
 
     public interface IConfig
