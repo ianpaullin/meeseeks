@@ -48,28 +48,13 @@ namespace Meeseeks.Library
         public string Version { get; set; }
 
         [JsonProperty("Date")]
-        public DateTimeOffset Date { get; set; }
+        public DateTime CreatedDateTime { get; set; }
 
         [JsonProperty("ConfigurationFiles")]
         public string[] ConfigurationFiles { get; set; }
 
         [JsonProperty("ProcessFlow")]
         public ProcessFlow[] ProcessFlow { get; set; }
-    }
-
-    public partial class MeeseeksConfiguration
-    {
-        [JsonProperty("Version")]
-        public string Version { get; set; }
-
-        [JsonProperty("Date")]
-        public DateTimeOffset Date { get; set; }
-
-        [JsonProperty("ConfigurationFiles")]
-        public string[] ConfigurationFiles { get; set; }
-
-        [JsonProperty("ProcessFlow")]
-        public ProcessFlow ProcessFlow { get; set; }
     }
 
     public partial class ProcessFlow

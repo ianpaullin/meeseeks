@@ -32,6 +32,18 @@ namespace Meeseeks.Library.Tests
             Assert.True(loadResult);
         }
 
+        [Fact]
+        public void IsValidConfigFileLoaded_Test()
+        {
+            // arrange & act
+            var configurationObj = new Library.Configuration(true);
+
+            // assert
+            Assert.True(!String.IsNullOrEmpty(configurationObj.Version));
+            Assert.True(!String.IsNullOrEmpty(configurationObj.CreatedDateTime.ToLongDateString()));
+            Assert.True(!String.IsNullOrEmpty(configurationObj.ConfigurationFilePath));
+        }
+
 
     }
 }

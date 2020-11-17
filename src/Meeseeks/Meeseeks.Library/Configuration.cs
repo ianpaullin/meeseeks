@@ -19,8 +19,16 @@ namespace Meeseeks.Library
     {
         private ConfigurationFile _configData;
         public string ConfigurationFilePath { get; set; }
-        public bool IsLoaded {
-            get { return (_configData != null && File.Exists(ConfigurationFilePath)); }
+        public string Version { get; set; }
+        public List<String> ConfigurationFiles { get; set; }
+        public ProcessFlow[] ProcessFlow { get; set; }
+        public DateTime CreatedDateTime { get; set; }
+        public bool IsLoaded
+        {
+            get
+            {
+                return (_configData != null && File.Exists(ConfigurationFilePath));
+            }
         }
 
         public Configuration()
@@ -59,6 +67,22 @@ namespace Meeseeks.Library
 
             var jsonString = File.ReadAllText(ConfigurationFilePath);
             this._configData = JsonSerializer.Deserialize<ConfigurationFile>(jsonString);
+
+            _mapConfigFileData();
+        }
+
+        private void _mapConfigFileData()
+        {
+            if (_configData != null)
+            {
+                Version = _configData.Version;
+                CreatedDateTime = _configData.CreatedDateTime;
+
+                if (_configData.ProcessFlow != null)
+                {
+                    this.ProcessFlow = _configData.ProcessFlow;
+                }
+            }
         }
 
         private bool _configFileExists(string configFile)
