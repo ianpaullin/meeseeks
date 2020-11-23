@@ -47,9 +47,10 @@ namespace Meeseeks.Library
         [JsonProperty("Version")]
         public string Version { get; set; }
 
-        [JsonProperty("Date")]
+        //[JsonProperty("Date")]
+        [JsonConverter(typeof(CustomDateTimeConverter))]
         public DateTime CreatedDateTime { get; set; }
-
+        
         [JsonProperty("ConfigurationFiles")]
         public string[] ConfigurationFiles { get; set; }
 

@@ -2,16 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.FileExtensions;
 using Microsoft.Extensions.Configuration.CommandLine;
 using Microsoft.Extensions.Configuration.EnvironmentVariables;
 using Microsoft.Extensions.Configuration.Json;
-using Microsoft.Extensions.Configuration.Binder;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Newtonsoft.Json.Converters;
 
 namespace Meeseeks.Library
 {
@@ -114,5 +113,12 @@ namespace Meeseeks.Library
     {
         void LoadConfigFile();
         string GetConfigValue(string keyName);
+    }
+    class CustomDateTimeConverter : IsoDateTimeConverter
+    {
+        public CustomDateTimeConverter()
+        {
+            base.DateTimeFormat = "yyyy-MM-dd";
+        }
     }
 }

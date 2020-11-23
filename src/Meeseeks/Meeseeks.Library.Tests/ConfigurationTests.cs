@@ -11,7 +11,7 @@ namespace Meeseeks.Library.Tests
     public class ConfigurationTests
     {
         [Fact]
-        public void IsLoaded_Test_NoAutoLoad() 
+        public void IsLoaded_NoAutoLoad_Test() 
         {
             // arrange & act
             var configurationObj = new Library.Configuration();
@@ -22,7 +22,7 @@ namespace Meeseeks.Library.Tests
         }
 
         [Fact]
-        public void IsLoaded_Test_AutoLoad()
+        public void IsLoaded_AutoLoad_Test()
         {
             // arrange & act
             var configurationObj = new Library.Configuration(true);
@@ -40,9 +40,10 @@ namespace Meeseeks.Library.Tests
 
             // assert
             Assert.True(!String.IsNullOrEmpty(configurationObj.Version));
-            Assert.True(!String.IsNullOrEmpty(configurationObj.CreatedDateTime.ToLongDateString()));
             Assert.True(!String.IsNullOrEmpty(configurationObj.ConfigurationFilePath));
+            Assert.True(configurationObj.CreatedDateTime != null);
         }
+
 
 
     }
