@@ -55,17 +55,17 @@ namespace Meeseeks.Library
 
         public void LoadConfigFile() 
         {
-            var configFileToUse = string.Empty;
+            var configFileJson = string.Empty;
 
+            // remove double slashes
             if (_configFileExists(ConfigurationFilePath)) {
-                configFileToUse = ConfigurationFilePath;
+                configFileJson = File.ReadAllText(ConfigurationFilePath.Replace(@"\\", @"\"));
             }
             else {
-                configFileToUse = _defaultConfigFile();
+                configFileJson = File.ReadAllText(_defaultConfigFile().Replace(@"\\", @"\"));
             }
 
-            var jsonString = File.ReadAllText(ConfigurationFilePath);
-            this._configData = JsonSerializer.Deserialize<ConfigurationFile>(jsonString);
+            this._configData = JsonSerializer.Deserialize<ConfigurationFile>(configFileJson);
 
             _mapConfigFileData();
         }
